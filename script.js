@@ -5,20 +5,20 @@ initializeApp();
 
 async function initializeApp() {
     let userData = await getUserData(500);
-    makeUserCards(userData);
+
+    const userCards = makeUserCards(userData);
 
     searchBar.addEventListener('input', e => {
         const searchTerm = e.target.value.toLowerCase();
 
-        const filteredUserData = userData.filter(user => {
-            const searchableData = `
-                ${user.name.first.toLowerCase()} ${user.name.last.toLowerCase()} 
-                ${user.location.city.toLowerCase()}, ${user.location.country.toLowerCase()}`;
-            return searchableData.includes(searchTerm);
+        userCards.forEach(card => {
+            if (card.innerHTML.toLowerCase().includes(searchTerm)) {
+                card.classList.remove('hide');
+            } else {
+                card.classList.add('hide');
+            }
         })
-
-        makeUserCards(filteredUserData);
-    })
+    });
 }
 
 async function getUserData(numUsers) {
@@ -41,17 +41,21 @@ async function getUserData(numUsers) {
 }
 
 function makeUserCards(userData) {
+    let userCards =[];
+
     cardContainer.innerHTML = '';
 
     userData.forEach((user) => {
-        const userCard = document.createElement('div');
-        userCard.classList.add('user-card');
-        userCard.innerHTML = `
-            <img src="${user.picture.large}" alt="Photo of ${user.name.first} ${user.name.last}">
+        const card = document.createElement('li');
+        card.innerHTML = `
+            <img src="${user.picture.large}" alt="Photo of ${user.name.first}">
             <div class="info">
                 <h2>${user.name.first} ${user.name.last}</h2>
                 <p>${user.location.city}, ${user.location.country}</p>
             </div>`;
-        cardContainer.append(userCard);
+        userCards.push(card);
+        cardContainer.append(card);
     });
+    
+    return userCards;
 }

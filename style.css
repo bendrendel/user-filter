@@ -17,17 +17,13 @@ body {
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.4);
-  margin: 20vh auto 20vh;
+  margin: 20vh auto 0;
 }
 
 header {
   background-color: rgb(66, 75, 207);
   color: #fff;
-  padding: 0 25px;
-  height: 25vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 35px 25px;
 }
 
 h1 {
@@ -38,6 +34,7 @@ h1 {
 header p {
   margin: 0 0 25px;
   font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 #search-bar {
@@ -57,14 +54,24 @@ header p {
 #card-container {
   max-height: 35vh;
   overflow-y: scroll;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.user-card {
+li {
   display: flex;
   align-items: flex-start;
   padding: 30px;
-  border-bottom: 1px solid #eee;
   background-color: #fff;
+}
+
+li:not(:last-of-type) {
+  border-bottom: 1px solid #eee;
+}
+
+li.hide {
+  display: none;
 }
 
 img {
