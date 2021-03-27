@@ -6,12 +6,10 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   overflow: hidden;
   margin: 0;
+  background-color: rgb(252, 252, 252);
 }
 
 #container {
@@ -19,12 +17,17 @@ body {
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.4);
+  margin: 20vh auto 20vh;
 }
 
 header {
   background-color: rgb(66, 75, 207);
   color: #fff;
-  padding: 35px 25px;
+  padding: 0 25px;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 h1 {
@@ -52,7 +55,7 @@ header p {
 }
 
 #user-container {
-  max-height: 500px;
+  max-height: 35vh;
   overflow-y: scroll;
 }
 
@@ -61,6 +64,7 @@ header p {
   align-items: flex-start;
   padding: 30px;
   border-bottom: 1px solid #eee;
+  background-color: #fff;
 }
 
 img {
