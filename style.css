@@ -37,7 +37,7 @@ header p {
   font-size: 0.9rem;
 }
 
-input {
+#search-bar {
   border: none;
   border-radius: 20px;
   padding: 10px 15px;
@@ -47,7 +47,7 @@ input {
   font-size: 0.9rem;
 }
 
-input:focus {
+#search-bar:focus {
   outline: none;
 }
 
