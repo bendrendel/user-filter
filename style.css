@@ -14,7 +14,7 @@ body {
   margin: 0;
 }
 
-.container {
+#container {
   width: 350px;
   border-radius: 5px;
   overflow: hidden;
@@ -51,7 +51,7 @@ input:focus {
   outline: none;
 }
 
-main {
+#user-container {
   max-height: 500px;
   overflow-y: scroll;
 }
