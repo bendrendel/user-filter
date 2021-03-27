@@ -1,47 +1,27 @@
-const userContainer = document.getElementById('user-container');
+const cardContainer = document.getElementById('card-container');
 const searchBar = document.getElementById('search-bar');
-let data;
 
-populateList(100);
+initializeApp();
 
-async function populateList(numUsers) {
-    data = await getUsers(numUsers);
-    for (let i = 0; i < numUsers; i++) {
-        const userEl = document.createElement('div');
-        userEl.classList.add('user');
-        userEl.innerHTML =`
-        <img src="${data[i].picture.large}" alt="Photo of ${data[i].name.first} ${data[i].name.last}">
-        <div class="info">
-            <h2>${data[i].name.first} ${data[i].name.last}</h2>
-            <p>${data[i].location.city}, ${data[i].location.country}</p>
-        </div>
-        `
-        userContainer.append(userEl);
-    }
+async function initializeApp() {
+    let userData = await getUserData(500);
+    makeUserCards(userData);
 
     searchBar.addEventListener('input', e => {
-        const filteredData = data.filter(item => {
-            return item.name.first.includes(e.target.value);
+        const searchTerm = e.target.value.toLowerCase();
+
+        const filteredUserData = userData.filter(user => {
+            const searchableData = `
+                ${user.name.first.toLowerCase()} ${user.name.last.toLowerCase()} 
+                ${user.location.city.toLowerCase()}, ${user.location.country.toLowerCase()}`;
+            return searchableData.includes(searchTerm);
         })
 
-        userContainer.innerHTML = '';
-
-        filteredData.forEach(item => {
-            const userEl = document.createElement('div');
-            userEl.classList.add('user');
-            userEl.innerHTML = `
-            <img src="${item.picture.large}" alt="Photo of ${item.name.first} ${item.name.last}">
-            <div class="info">
-                <h2>${item.name.first} ${item.name.last}</h2>
-                <p>${item.location.city}, ${item.location.country}</p>
-            </div>
-            `;
-            userContainer.append(userEl);
-        })
+        makeUserCards(filteredUserData);
     })
 }
 
-async function getUsers(numUsers) {
+async function getUserData(numUsers) {
     const url = 'https://randomuser.me/api/';
     const resultsParam = `?results=${numUsers}`;
     const endpoint = url + resultsParam;
@@ -58,4 +38,20 @@ async function getUsers(numUsers) {
     } catch(e) {
         console.log(e);
     }
+}
+
+function makeUserCards(userData) {
+    cardContainer.innerHTML = '';
+
+    userData.forEach((user) => {
+        const userCard = document.createElement('div');
+        userCard.classList.add('user-card');
+        userCard.innerHTML = `
+            <img src="${user.picture.large}" alt="Photo of ${user.name.first} ${user.name.last}">
+            <div class="info">
+                <h2>${user.name.first} ${user.name.last}</h2>
+                <p>${user.location.city}, ${user.location.country}</p>
+            </div>`;
+        cardContainer.append(userCard);
+    });
 }
