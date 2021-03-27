@@ -44,6 +44,7 @@ input {
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   width: 100%;
+  font-size: 0.9rem;
 }
 
 input:focus {
@@ -51,6 +52,28 @@ input:focus {
 }
 
 main {
-  max-height: 400px;
+  max-height: 520px;
   overflow-y: scroll;
+}
+
+.user {
+  display: flex;
+  align-items: flex-start;
+  padding: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.info {
+  margin-left: 15px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
 }
