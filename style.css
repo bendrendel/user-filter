@@ -54,12 +54,12 @@ header p {
   outline: none;
 }
 
-#user-container {
+#card-container {
   max-height: 35vh;
   overflow-y: scroll;
 }
 
-.user {
+.user-card {
   display: flex;
   align-items: flex-start;
   padding: 30px;
